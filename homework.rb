@@ -20,6 +20,9 @@ puts " # Ans. 2.2 Tried to insert if-statement into block."
 # the block will return 'nil' when if-statement is false, so make it pass back sum then
 p [*1..100].reduce { |sum, n| n.odd? ? sum + n : sum }
 p "======================================"
+puts " # Ans. 2.3 in class"
+p a = [*1..100].select { |i| i.odd? }.sum
+p "======================================"
 #########################################
 # Wait to figure out why block below doesn't work?
 # p [*1..100].reduce { |sum, n|
@@ -58,6 +61,20 @@ end
 5.my_times { |i| puts i }                 # 印出數字 0 ~ 4
 p "======================================"
 
+puts "3.2 in class answer"
+class Integer
+  def my_times()
+    i = 0
+    while i < self
+      yield(i)
+      i += 1
+    end
+  end
+end
+
+5.my_times { |i| puts i }                 # 印出數字 0 ~ 4
+p "======================================"
+
 puts "練習 4：土砲 select 方法 # 只印出單數 1, 3, 5"
 
 class Array
@@ -74,3 +91,18 @@ end
 [1, 2, 3, 4, 5].my_select { |i| i.odd? }  # 只印出單數 1, 3, 5
 p "======================================"
 
+puts "4.2 in class answer"
+
+class Array
+  def my_select()
+    array_selected = []
+    self.each do |num|
+      if yield(num)
+        array_selected << num
+      end
+    end
+    array_selected
+  end
+end
+p [1, 2, 3, 4, 5].my_select { |i| i.odd? }  # 只印出單數 1, 3, 5
+p "======================================"
